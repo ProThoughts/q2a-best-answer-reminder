@@ -19,8 +19,15 @@ class qa_ba_reminder_widget {
 			return;
 		}
 
-		echo '<h2>ベストアンサーを選択してください</h2>';
-		echo '<p>以下の質問には、複数の回答が寄せられていますが、まだベストアンサーが選択されていません。</p>';
+		$title = qa_lang_html('qa_ba_reminder_lang/please_select_ba');
+		$desc = qa_lang_html('qa_ba_reminder_lang/module_desc');
+		$desc = strtr($desc, array(
+			'^1' => '2',
+		));
+
+		echo '<h2>' . $title . '</h2>';
+		echo '<p>' . $desc . '</p>';
+
 		echo '<ul>';
 		foreach($list as $question) {
 			echo '<li><a href="' . qa_opt('site_url') . $question['qid'] . '" >'. $question['title'] . '</a></li>';

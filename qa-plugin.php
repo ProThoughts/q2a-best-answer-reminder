@@ -24,3 +24,5 @@ qa_register_plugin_module(
 	'qa_ba_reminder_widget',
 	'Best Answer Reminder' 
 );
+
+qa_register_plugin_phrases('qa-ba-reminder-lang-*.php', 'qa_ba_reminder_lang');
