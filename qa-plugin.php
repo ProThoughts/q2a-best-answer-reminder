@@ -26,3 +26,7 @@ qa_register_plugin_module(
 );
 
 qa_register_plugin_phrases('qa-ba-reminder-lang-*.php', 'qa_ba_reminder_lang');
+
+// admin options
+qa_register_plugin_module('module', 'q2a-ba-reminder-admin.php', 'q2a_ba_reminder_admin', 'q2a Best Answer Reminder Admin');
+
