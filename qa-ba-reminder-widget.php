@@ -16,7 +16,7 @@ class qa_ba_reminder_widget {
 		}
 
 		$minAnswerCount = qa_opt('q2a_ba_reminder_answer_count');
-		$list = $this->getNoBestAnswerQuestion($userid, $minAnswerCount);
+		$list = getNoBestAnswerQuestionByUser($userid, $minAnswerCount);
 		if(count($list) === 0){
 			return;
 		}
@@ -38,14 +38,16 @@ class qa_ba_reminder_widget {
 		
 	}
 
-	function getNoBestAnswerQuestion($userid, $minAnswerCount) {
+	function sendEmail(){
 
+		qa_send_email($params);
+	        $params['fromemail'] = '';
+                $params['fromname'] = '';
+                $params['toemail'] = '';
+		$params['toname'] = '';
+                $params['subject'] = '';
+                $params['body'] = '';
+                $params['html'] = true;
 
-		$sql = "select t1.postid as qid, t1.title, count(t1.postid) as answer_num " . 
-			"from qa_posts t1  join qa_posts t2 on t1.postid = t2.parentid ". 
-			"where t1.userid = " . $userid . " and t1.type = 'Q' and t1.selchildid is null and t2.type='A' group by t1.postid having answer_num >=" . $minAnswerCount;
-		$result = qa_db_query_sub($sql); 
-		return qa_db_read_all_assoc($result);
 	}
-
 }

@@ -30,3 +30,19 @@ qa_register_plugin_phrases('qa-ba-reminder-lang-*.php', 'qa_ba_reminder_lang');
 // admin options
 qa_register_plugin_module('module', 'q2a-ba-reminder-admin.php', 'q2a_ba_reminder_admin', 'q2a Best Answer Reminder Admin');
 
+function getNoBestAnswerQuestion($minAnswerCount){
+	$sql = "select t1.userid as userid, t1.postid as qid, t1.title as title, count(t1.postid) as answer_num  from qa_posts t1  join qa_posts t2 on t1.postid = t2.parentid  where t1.userid is not null and t1.type = 'Q' and t1.selchildid is null and t2.type='A' group by t1.postid having answer_num >=" . $minAnswerCount . " order by t1.userid;";
+	$result = qa_db_query_sub($sql); 
+	return qa_db_read_all_assoc($result);
+}
+
+function getNoBestAnswerQuestionByUser($userid, $minAnswerCount) {
+
+	$sql = "select t1.postid as qid, t1.title, count(t1.postid) as answer_num " . 
+		"from qa_posts t1  join qa_posts t2 on t1.postid = t2.parentid ". 
+		"where t1.userid = " . $userid . " and t1.type = 'Q' and t1.selchildid is null and t2.type='A' group by t1.postid having answer_num >=" . $minAnswerCount;
+	$result = qa_db_query_sub($sql); 
+	return qa_db_read_all_assoc($result);
+}
+
+
