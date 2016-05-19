@@ -31,7 +31,7 @@ foreach($noBAQuestions as $userid => $userQuestions) {
 			$body .= "\n";
 		}
 
-		$body .= 'ベストアンサーは、回答の左側の大きなチェックマークをクリックすると選択できます。' . "\n";
+		$body .= 'ベストアンサーは、ログイン状態で自分が行った質問にのみ表示される、回答の左側の大きなチェックマークをクリックすると選択できます。' . "\n";
 		$body .= 'これからもご質問お待ちしております。';
 
 		$params['fromemail'] = qa_opt('from_email');
