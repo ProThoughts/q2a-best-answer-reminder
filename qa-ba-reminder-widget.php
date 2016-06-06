@@ -8,7 +8,7 @@ class qa_ba_reminder_widget {
 	function allow_region($region) {
 		return true;
 	}
-	
+
 	function output_widget($region, $place, $themeobject, $template, $request, $qa_content) {
 		$userid = qa_get_logged_in_userid();
 		if(!isset($userid)){
@@ -35,19 +35,6 @@ class qa_ba_reminder_widget {
 			echo '<li><a href="' . qa_opt('site_url') . $question['qid'] . '" >'. $question['title'] . '</a></li>';
 		}
 		echo '</ul>';
-		
-	}
-
-	function sendEmail(){
-
-		qa_send_email($params);
-	        $params['fromemail'] = '';
-                $params['fromname'] = '';
-                $params['toemail'] = '';
-		$params['toname'] = '';
-                $params['subject'] = '';
-                $params['body'] = '';
-                $params['html'] = true;
 
 	}
 }
